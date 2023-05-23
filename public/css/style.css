@@ -1,0 +1,69 @@
+/* General */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 40px;
+}
+p {
+  font-size: 20px;
+  line-height: 130%;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 7px;
+}
+h1 {
+  font-family: Georgia, Arial, Helvetica, sans-serif;
+  color: #930;
+  margin-bottom: 27px;
+}
+h2 {
+  margin: 0px;
+  margin-bottom: 8px;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 5px;
+}
+a {
+  font-size: 16px;
+  color: #f90;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+form {
+  margin-bottom: 15px;
+}
+
+.chat-date {
+  color: gray;
+  font-size: 0.75rem;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+#flex-container {
+  display: none;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+
+#greeting {
+  color: blue;
+}
+
+#message {
+  display: none;
+}
+#user {
+  text-align: center;
+  margin-top: 100px;
+}
