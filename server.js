@@ -22,7 +22,7 @@ start();
 
 app.use(express.static("public"));
 
-// Endpoint för att visa meddelanden från mongoDB
+// Endpoint to show data from MongoDB
 app.get("/dicehistory", async (req, res) => {
   try {
     const allDiceOutcomes = await diceOutcomeModel.find();
@@ -40,7 +40,7 @@ io.on("connection", (socket) => {
   socket.on("chatMessage", (msg) => {
     console.log("Meddelanden: " + msg.message);
     let today = new Date();
-    let dateTime = today.toISOString().replace("T", " ").slice(0, 21);
+    let dateTime = today.toISOString().replace("T", " ").slice(0, 19);
     io.emit("newChatMessage", {
       date: dateTime,
       user: msg.user,
@@ -61,7 +61,7 @@ io.on("connection", (socket) => {
     let today = new Date();
     let dateTime = today.toISOString().replace("T", " ").slice(0, 21);
 
-    // Sparar till MongoDB med Mongoose
+    // Save to MongoDB with Mongoose
     const newDiceThrow = new diceOutcomeModel({
       date: dateTime,
       user: user,
