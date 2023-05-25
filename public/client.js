@@ -72,6 +72,7 @@ formUser.addEventListener("submit", function (e) {
   document.getElementById("flex-container").style.display = "flex";
   hexCode = generateRandomHexCode();
   inputUser.value = "";
+  inputUserBtn.disabled = true;
 });
 
 // Chat

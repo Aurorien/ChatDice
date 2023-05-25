@@ -19,4 +19,4 @@ const DiceOutcomeSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("dicegame", DiceOutcomeSchema);
+module.exports = mongoose.model("chatdice", DiceOutcomeSchema);
