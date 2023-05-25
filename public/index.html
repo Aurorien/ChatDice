@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DiceChat</title>
+    <title>ChatDice</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
     <div id="user">
-      <h1>Tärningspelchatt</h1>
-      <form id="formUser">
-        <input type="text" id="inputUser" />
-        <div id="username-error" class="invalid-feedback" style="display: none">
-          Username should only contain letters and numbers.
-        </div>
-        <button id="inputUserBtn" disabled="true">Skriv in ditt namn</button>
+      <h1>ChatDice</h1>
+      <form id="form-user">
+        <input type="text" id="input-user" />
+        <div id="username-error"></div>
+        <button id="input-user-btn" disabled="true">Skriv in ditt namn</button>
       </form>
     </div>
     <h1 id="greeting"></h1>
@@ -20,13 +18,13 @@
       <div id="chat-container">
         <h1>Chat</h1>
         <div id="message">
-          <form id="formMessage">
-            <input type="text" id="inputMessage" /><button>
-              Skicka ett meddelande
-            </button>
+          <form id="form-message">
+            <input type="text" id="input-message" />
+            <button id="input-message-btn">Skicka ett meddelande</button>
+            <div id="message-error"></div>
           </form>
         </div>
-        <h2>Chat meddelanden</h2>
+        <h2>Chat-meddelanden:</h2>
         <ul id="messages"></ul>
       </div>
 

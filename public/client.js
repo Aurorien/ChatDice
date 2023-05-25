@@ -1,12 +1,14 @@
 const socket = io();
 
-const formUser = document.querySelector("#formUser");
-const inputUser = document.querySelector("#inputUser");
-const inputUserBtn = document.querySelector("#inputUserBtn");
+const formUser = document.querySelector("#form-user");
+const inputUser = document.querySelector("#input-user");
+const inputUserBtn = document.querySelector("#input-user-btn");
 const usernameError = document.querySelector("#username-error");
 const messages = document.querySelector("#messages");
-const formMessage = document.querySelector("#formMessage");
-const inputMessage = document.querySelector("#inputMessage");
+const formMessage = document.querySelector("#form-message");
+const inputMessage = document.querySelector("#input-message");
+const inputMessageBtn = document.querySelector("#input-message-btn");
+const messageError = document.querySelector("#message-error");
 const greeting = document.querySelector("#greeting");
 const diceButton = document.querySelector("#dice-button");
 const diceturn = document.querySelector("#diceturn");
@@ -18,7 +20,6 @@ let hexCode = "inget";
 // Generates a random hex code for coloring text
 function generateRandomHexCode() {
   let x, y, i;
-
   // To kind of get a good variation and vibrancy of colors
   x = Math.floor(Math.random() * 10).toString(10);
   if (x === "0") {
@@ -31,58 +32,36 @@ function generateRandomHexCode() {
   } else {
     i = "0";
   }
-
   const hexCode = `#${x}${x}${y}${y}${i}${i}`;
-
   return hexCode;
 }
 
-// Regex (regular expression) test and rule on input username to prevent database injections
-
-// inputUser.addEventListener("input", function () {
-//   let username = inputUser.value;
-//   const regex = /^[A-Za-z0-9]+$/;
-//   console.log("username", username);
-
-//   if (username.length > 0 && !regex.test(username)) {
-//     console.log("REGEX");
-
-//     usernameError.style.display = "block";
-//     inputUserBtn.disabled = true;
-//   } else if (username === "") {
-//     console.log("ELSEIF");
-//     usernameError.style.display = "none";
-//     inputUserBtn.disabled = true;
-//   } else {
-//     console.log("ELSE");
-//     usernameError.style.display = "none";
-//     inputUserBtn.disabled = false;
-//   }
-// });
-
-inputUser.addEventListener("input", () =>
-  regex(inputUser.value, usernameError, inputUserBtn)
-);
-
+// Regex (regular expression) test and rule on input to prevent injections in database
 function regex(textinput, errorElement, button) {
   let text = textinput;
   const regex = /^[A-Za-z0-9(),?!"*.,\-:]+$/;
   console.log("text", text);
-
   if (text.length > 0 && !regex.test(text)) {
     console.log("REGEX");
-    errorElement.style.display = "block";
+    errorElement.innerHTML =
+      '<div class="invalid-feedback"> Endast bokstäver, siffror och följande tecken: ()?!"*.,-:. </div>';
+
     button.disabled = true;
   } else if (text === "") {
     console.log("ELSEIF");
-    errorElement.style.display = "none";
+    errorElement.innerHTML = "";
     button.disabled = true;
   } else {
     console.log("ELSE");
-    errorElement.style.display = "none";
+    errorElement.innerHTML = "";
     button.disabled = false;
   }
 }
+
+// User start
+inputUser.addEventListener("input", () =>
+  regex(inputUser.value, usernameError, inputUserBtn)
+);
 
 formUser.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -94,12 +73,11 @@ formUser.addEventListener("submit", function (e) {
   hexCode = generateRandomHexCode();
 });
 
-// isUsernameValid() {
-//   const regex = /^[A-Za-z0-9]+$/
-//   return regex.test(this.username)
-// }
-
 // Chat
+inputMessage.addEventListener("input", () =>
+  regex(inputMessage.value, messageError, inputMessageBtn)
+);
+
 formMessage.addEventListener("submit", function (e) {
   e.preventDefault();
   console.log("hexCode", hexCode);
@@ -130,7 +108,6 @@ socket.on("newChatMessage", function (msg) {
   spanChatUser.style.color = msg.hex;
 
   let spanChatMsg = document.createElement("span");
-  // spanChatMsg.classList.add("chat-message");
   spanChatUser.appendChild(spanChatMsg);
   spanChatMsg.textContent = msg.message;
 

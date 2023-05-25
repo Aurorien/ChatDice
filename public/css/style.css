@@ -16,7 +16,7 @@ h1 {
   margin-bottom: 27px;
 }
 h2 {
-  margin: 0px;
+  margin-top: 27px;
   margin-bottom: 8px;
 }
 ul {
@@ -50,8 +50,15 @@ form {
   margin-bottom: 2px;
 }
 
+.invalid-feedback {
+  font-size: 10px;
+  color: rgb(189, 2, 2);
+  margin-top: 5px;
+  margin-bottom: -17px;
+}
+
 #dice-button {
-  margin-bottom: 15px;
+  margin-bottom: 2px;
 }
 
 #flex-container {
@@ -67,6 +74,10 @@ form {
   margin-left: 10px;
   text-shadow: 1.5px 1.3px 1px rgb(153, 28, 0), 0 0 1em rgb(167, 232, 251),
     0 0 2em rgb(255, 255, 176);
+}
+
+#input-user-btn {
+  margin-top: 20px;
 }
 
 #message {

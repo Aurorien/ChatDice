@@ -16,7 +16,7 @@ fetch(url)
     let message = data;
     return message.map(function (data) {
       let li = createNode("li");
-      li.innerHTML = `${data.date}\xa0\xa0\xa0 ${data.user} :\xa0\xa0Kastpoäng: ${data.dice_value}\xa0\xa0\xa0Total poäng: ${data.total_dice_value}`;
+      li.textContent = `${data.date}\xa0\xa0\xa0 ${data.user} :\xa0\xa0Kastpoäng: ${data.dice_value}\xa0\xa0\xa0Total poäng: ${data.total_dice_value}`;
       append(ul, li);
     });
   })
