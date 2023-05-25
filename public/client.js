@@ -36,10 +36,10 @@ function generateRandomHexCode() {
   return hexCode;
 }
 
-// Regex (regular expression) test and rule on input to prevent injections in database
+// Regex (regular expression) test and permissions on input, to prevent injections in database
 function regex(textinput, errorElement, button) {
   let text = textinput;
-  const regex = /^[A-Za-z0-9(),?!"*.,\-:]+$/;
+  const regex = /^[A-Za-z0-9(),?!"*.,\-:ÅÄÖåäö]+$/;
   console.log("text", text);
   if (text.length > 0 && !regex.test(text)) {
     console.log("REGEX");
@@ -71,6 +71,7 @@ formUser.addEventListener("submit", function (e) {
   document.getElementById("message").style.display = "block";
   document.getElementById("flex-container").style.display = "flex";
   hexCode = generateRandomHexCode();
+  inputUser.value = "";
 });
 
 // Chat
@@ -88,8 +89,8 @@ formMessage.addEventListener("submit", function (e) {
       message: inputMessage.value,
       hex: hexCode,
     });
-    inputMessage.value = "";
   }
+  inputMessage.value = "";
 });
 
 socket.on("newChatMessage", function (msg) {
@@ -138,3 +139,5 @@ socket.on("newDiceTurn", function (msg) {
   diceturn.appendChild(liDice);
   liDice.style.color = msg.hex;
 });
+
+window.onload = inputMessage.value = "";
