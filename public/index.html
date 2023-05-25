@@ -8,10 +8,14 @@
     <div id="user">
       <h1>Tärningspelchatt</h1>
       <form id="formUser">
-        <input type="text" id="inputUser" /><button>Skriv in ditt namn</button>
+        <input type="text" id="inputUser" />
+        <div id="username-error" class="invalid-feedback" style="display: none">
+          Username should only contain letters and numbers.
+        </div>
+        <button id="inputUserBtn" disabled="true">Skriv in ditt namn</button>
       </form>
     </div>
-    <div id="greeting"></div>
+    <h1 id="greeting"></h1>
     <div id="flex-container">
       <div id="chat-container">
         <h1>Chat</h1>
@@ -31,9 +35,10 @@
         <button id="dice-button">Kasta tärning</button>
         <h2>Tärningskast:</h2>
         <ul id="diceturn"></ul>
+        <a href="dicehistory.html">Visa tärningskasthistorik</a>
       </div>
     </div>
-    <a href="dicehistory.html">Visa tärningskasthistorik</a>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
   </body>

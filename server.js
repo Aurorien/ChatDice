@@ -50,10 +50,10 @@ io.on("connection", (socket) => {
   });
 
   socket.on("diceGame", (msg) => {
-    io.emit(
-      "newDiceTurn",
-      `${msg.user} : Tärningen landade på: ${msg.dice_value}  \xa0\xa0\xa0\xa0  \r\n Total poäng för ${msg.user}: ${msg.total_dice_value}`
-    );
+    io.emit("newDiceTurn", {
+      message: `${msg.user} : Tärningen landade på: ${msg.dice_value}  \xa0\xa0\xa0\xa0  \r\n Total poäng för ${msg.user}: ${msg.total_dice_value}`,
+      hex: msg.hex,
+    });
 
     let user = msg.user;
     let diceValue = msg.dice_value;

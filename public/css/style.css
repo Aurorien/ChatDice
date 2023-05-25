@@ -12,7 +12,7 @@ p {
 }
 h1 {
   font-family: Georgia, Arial, Helvetica, sans-serif;
-  color: #930;
+  color: rgb(153, 28, 0);
   margin-bottom: 27px;
 }
 h2 {
@@ -31,9 +31,10 @@ li {
   margin-bottom: 5px;
 }
 a {
-  font-size: 16px;
-  color: #f90;
+  font-size: 14px;
+  color: rgb(223, 126, 41);
   text-decoration: none;
+  margin-top: 40px;
 }
 a:hover {
   text-decoration: underline;
@@ -49,6 +50,10 @@ form {
   margin-bottom: 2px;
 }
 
+#dice-button {
+  margin-bottom: 15px;
+}
+
 #flex-container {
   display: none;
   align-items: flex-start;
@@ -57,12 +62,17 @@ form {
 }
 
 #greeting {
-  color: blue;
+  color: rgb(255, 107, 14);
+  font-size: 1.7rem;
+  margin-left: 10px;
+  text-shadow: 1.5px 1.3px 1px rgb(153, 28, 0), 0 0 1em rgb(167, 232, 251),
+    0 0 2em rgb(255, 255, 176);
 }
 
 #message {
   display: none;
 }
+
 #user {
   text-align: center;
   margin-top: 100px;
