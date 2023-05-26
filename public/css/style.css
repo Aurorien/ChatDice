@@ -2,6 +2,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 40px;
+  overflow-y: scroll;
 }
 p {
   font-size: 20px;
@@ -29,18 +30,18 @@ li {
   padding: 0;
   list-style-type: none;
   margin-bottom: 5px;
+  font-size: 0.8rem;
+  overflow-wrap: break-word;
+  padding-right: 20px;
 }
-a {
-  font-size: 14px;
-  color: rgb(223, 126, 41);
-  text-decoration: none;
-  margin-top: 50px;
-}
-a:hover {
-  text-decoration: underline;
-}
+
 form {
   margin-bottom: 15px;
+}
+
+span {
+  overflow-wrap: break-word;
+  padding-right: 30px;
 }
 
 .chat-date {
@@ -48,6 +49,47 @@ form {
   font-size: 0.75rem;
   margin-top: 10px;
   margin-bottom: 2px;
+}
+
+.dicegame-title {
+  margin-left: -25px;
+}
+
+.dicehistory {
+  font-size: 14px;
+  color: rgb(223, 126, 41);
+  text-decoration: none;
+  margin-top: 50px;
+}
+
+.dicehistory:hover {
+  text-decoration: underline;
+}
+
+.dicehistory-section {
+  display: none;
+}
+
+#chat-container {
+  width: 40vw;
+  max-width: 40vw;
+}
+
+#dicegame-container {
+  width: 40vw;
+  max-width: 40vw;
+}
+
+#dicehistory {
+  font-size: 0.8rem;
+}
+
+#dicehistory-container {
+  display: none;
+}
+
+#dicehistory-hide {
+  display: none;
 }
 
 .invalid-feedback {

@@ -12,6 +12,10 @@ const messageError = document.querySelector("#message-error");
 const greeting = document.querySelector("#greeting");
 const diceButton = document.querySelector("#dice-button");
 const diceturn = document.querySelector("#diceturn");
+const diceHistorySec = document.querySelector("#dicehistory-sec");
+const diceHistoryContainer = document.querySelector("#dicehistory-container");
+const diceHistoryShow = document.querySelector("#dicehistory-show");
+const diceHistoryHide = document.querySelector("#dicehistory-hide");
 
 let myUser, randDice;
 let totDice = 0;
@@ -39,12 +43,12 @@ function generateRandomHexCode() {
 // Regex (regular expression) test and permissions on input, to prevent injections in database
 function regex(textinput, errorElement, button) {
   let text = textinput;
-  const regex = /^[A-Za-z0-9(),?!"*.,\-:ÅÄÖåäö]+$/;
+  const regex = /^[A-Za-z0-9(),?!"*^.,_=~\-:ÅÄÖåäö\s]+$/;
   console.log("text", text);
   if (text.length > 0 && !regex.test(text)) {
     console.log("REGEX");
     errorElement.innerHTML =
-      '<div class="invalid-feedback"> Endast bokstäver, siffror och följande tecken: ()?!"*.,-:. </div>';
+      '<div class="invalid-feedback"> Endast bokstäver, siffror och följande tecken: ()?!"=*_^.,-: ~ </div>';
 
     button.disabled = true;
   } else if (text === "") {
@@ -70,6 +74,7 @@ formUser.addEventListener("submit", function (e) {
   document.getElementById("user").style.display = "none";
   document.getElementById("message").style.display = "block";
   document.getElementById("flex-container").style.display = "flex";
+  diceHistorySec.style.display = "block";
   hexCode = generateRandomHexCode();
   inputUser.value = "";
   inputUserBtn.disabled = true;
@@ -113,7 +118,7 @@ socket.on("newChatMessage", function (msg) {
   spanChatUser.appendChild(spanChatMsg);
   spanChatMsg.textContent = msg.message;
 
-  messages.appendChild(liChat);
+  messages.insertBefore(liChat, messages.firstChild);
 });
 
 // Dicegame
@@ -137,8 +142,48 @@ socket.on("newDiceTurn", function (msg) {
   console.log("msg newDicwTurn", msg);
   let liDice = document.createElement("li");
   liDice.textContent = msg.message;
-  diceturn.appendChild(liDice);
+  diceturn.insertBefore(liDice, diceturn.firstChild);
   liDice.style.color = msg.hex;
 });
 
 window.onload = inputMessage.value = "";
+
+// Dice history
+diceHistoryShow.addEventListener("click", (e) => {
+  e.preventDefault();
+  diceHistoryShow.style.display = "none";
+  diceHistoryHide.style.display = "block";
+  diceHistoryContainer.style.display = "block";
+  function createNode(element) {
+    return document.createElement(element);
+  }
+
+  function append(parent, el) {
+    return parent.appendChild(el);
+  }
+
+  const ul = document.getElementById("dicehistory");
+  const url = "http://localhost:3000/dicehistory";
+
+  fetch(url)
+    .then((resp) => resp.json())
+    .then(function (data) {
+      console.log(data);
+      let message = data.reverse();
+      return message.map(function (data) {
+        let li = createNode("li");
+        li.textContent = `${data.date}\xa0\xa0\xa0 ${data.user} :\xa0\xa0Kastpoäng: ${data.dice_value}\xa0\xa0\xa0Total poäng: ${data.total_dice_value}`;
+        append(ul, li);
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+diceHistoryHide.addEventListener("click", (e) => {
+  e.preventDefault();
+  diceHistoryShow.style.display = "block";
+  diceHistoryHide.style.display = "none";
+  diceHistoryContainer.style.display = "none";
+});
