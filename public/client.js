@@ -62,10 +62,17 @@ function regex(textinput, errorElement, button) {
   }
 }
 
+function onloadWindow() {
+  inputUser.value = "";
+  inputUserBtn.disabled = true;
+  inputMessage.value = "";
+  inputMessageBtn.disabled = true;
+}
+
 // User start
-inputUser.addEventListener("input", () =>
-  regex(inputUser.value, usernameError, inputUserBtn)
-);
+inputUser.addEventListener("input", () => {
+  regex(inputUser.value, usernameError, inputUserBtn);
+});
 
 formUser.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -145,8 +152,6 @@ socket.on("newDiceTurn", function (msg) {
   diceturn.insertBefore(liDice, diceturn.firstChild);
   liDice.style.color = msg.hex;
 });
-
-window.onload = inputMessage.value = "";
 
 // Dice history
 diceHistoryShow.addEventListener("click", (e) => {
